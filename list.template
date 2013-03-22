@@ -1,0 +1,353 @@
+import java.util.HashMap;
+import java.util.List;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Message;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.genertech.framework.activity.SimpleListActivity;
+import com.genertech.framework.service.UserInfoService;
+import com.genertech.framework.units.Constant;
+import com.genertech.framework.units.LogUtils;
+import com.genertech.framework.units.ViewUtils;
+import com.genertech.sss.R;
+import com.genertech.sss.main.entity.UserInfoEntity;
+import com.genertech.sss.riskmanagement.bean.<%= key %>Bean;
+import com.genertech.sss.riskmanagement.service.RepairPlanHttpService;
+
+/**
+ * 
+ * 
+ * @author frankswu
+ * 
+ */
+public class <%= key %>ListActivity extends SimpleListActivity {
+
+	private static final String TAG = "<%= key %>ListActivity";
+
+	private Context context = null;
+
+	protected UserInfoEntity userInfo = null;
+	protected boolean isUseUserId = true;
+
+	// private WorkTaskService service = null;
+	private List<<%= key %>Bean> listData = null;
+	private ListView listView;
+	private <%= key %>ListAdapter listAdapter = null;
+	private TextView tvPrompt = null;// 无数据提示信息
+	private TextView etPromptTitle = null;
+	protected int listLayoutRes;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		// TODO frankswu
+		setContentView(R.layout.simple_list);
+//		setContentView(R.layout.<%= key.gsub(/[A-Z]/,'_\&').downcase %>_list);
+		context = this;
+		initComponent();
+		createBackButton(this);
+		setSelfComponent();
+
+		try {
+			uiHandle.execute("请稍后");
+		} catch (Exception e) {
+			LogUtils.logException(context, TAG, e);
+		}
+
+	}
+
+	protected abstract void setSelfComponent() ;
+
+	@Override
+	protected void gobackAction() {
+		this.onBackPressed();
+	}
+
+	@Override
+	protected void doMessageInUiHandler(Message msg) {
+		switch (msg.what) {
+		case Constant.MSG_SUCCESSED:
+			listAdapter = new <%= key %>ListAdapter(context, listLayoutRes, listData);
+//			listAdapter = new <%= key %>ListAdapter(context,
+//					R.layout.<%= key.gsub(/[A-Z]/,'_\&').downcase %>_list_item, listData);
+			listView.setAdapter(listAdapter);
+			if (listData != null && listData.size() > 0) {
+				listAdapter.setData(listData);
+				listAdapter.notifyDataSetChanged();
+				tvPrompt.setVisibility(View.GONE);
+				listView.setVisibility(View.VISIBLE);
+			} else {
+				tvPrompt.setVisibility(View.VISIBLE);
+				listView.setVisibility(View.GONE);
+			}
+			break;
+		}
+	}
+
+	@Override
+	protected void doTaskInUiHandler(Message msg) {
+		initData();
+	}
+
+	@Override
+	protected void initComponent() {
+		etPromptTitle = (TextView) findViewById(R.id.et_title_tv);
+		// TODO frankswu
+		etPromptTitle.setText("列表");
+		tvPrompt = (TextView) findViewById(R.id.tv_prompt);
+		ivBack = (ImageView) findViewById(R.id.iv_back);
+
+		listView = this.getListView();
+		listView.setOnItemClickListener(itemSelectedListener);
+		setItemSelectedListener();
+		setListLayoutRes();
+
+	}
+
+/*
+	@SuppressWarnings("unchecked")
+	@Override
+	protected void initData() {
+		userInfo = UserInfoService.getLoginUserInfo(this);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("status", "approve");
+		try {
+			// frankswu
+			RResult result = httpSerivce.getOrderListFromServer(map, userInfo);
+			listData = (List<<%= key %>Bean>) result.getObject();
+		} catch (Exception e) {
+			LogUtils.logException(this, TAG, e);
+		}
+	}
+
+	protected void setItemSelectedListener() {
+		itemSelectedListener = new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> listview, View view, int position, long id) {
+				LogUtils.logObjectArray(TAG, "setItemSelectedListener.bean", listData.get(position));
+				Intent intent = new Intent();
+				intent.setClass(InstructionApproveListActivity.this, InstructionApproveActivity.class);
+				intent.putExtra(<%= key %>Bean.TABLE_NAME, listData.get(position));
+				if (listData.get(position) != null) {
+					intent.putExtra("map", listData.get(position).strBeanMaps);
+					LogUtils.logObjectArray(TAG, "setItemSelectedListener.beanMaps", listData.get(position).strBeanMaps);
+				}
+				startActivity(intent);
+				finish();
+			}
+		};
+	}
+
+	@Override
+	protected void setSelfComponent() {
+		etPromptTitle.setText("领导审批指令书列表");
+	}
+
+	@Override
+	public void setListLayoutRes() {
+		super.listLayoutRes = R.layout.instruction_list_item;
+	}
+
+*/
+	protected HashMap<String, Object> getMap4HttpService() {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("isLeader", "false");
+		LogUtils.logStringArray(TAG, "getMap4HttpService.map", map.toString());
+		return map;
+	}
+
+
+	protected AdapterView.OnItemClickListener itemSelectedListener ;
+/*
+	private AdapterView.OnItemClickListener itemSelectedListener = new AdapterView.OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> listview, View view,
+				int position, long id) {
+			Intent intent = new Intent();
+			intent.setClass(context, <%= key %>InfoActivity.class);
+			intent.putExtra(<%= key %>Bean.TABLE_NAME, listData.get(position));
+			startActivity(intent);
+			finish();
+		}
+	};
+*/
+	class <%= key %>ListAdapter extends SimpleArrayAdapter<<%= key %>Bean> {
+
+		public <%= key %>ListAdapter(Context context, int textViewResourceId,
+				List<<%= key %>Bean> objects) {
+			super(context, textViewResourceId, objects);
+		}
+
+		@Override
+		public View doInGetView(<%= key %>Bean bean, int llyRes, int position,
+				View convertView, ViewGroup parent) {
+			// TODO frankswu
+			// <%= key %>Bean.mapKey;
+			String[] mapKey = new String[]{			};
+			ViewUtils.ViewHolder viewHolder = ViewUtils.createViewHolderByIds(
+					context, convertView, llyRes, <%= key %>Bean.viewIds);
+			ViewUtils.setViewHolderTextViewsByMap2(viewHolder, bean.beanMaps,mapKey);
+			LogUtils.logObjectArray(TAG, "doInGetView", viewHolder.convertView);
+			return viewHolder.convertView;
+		}
+
+	}
+}
+
+/*
+<%= key.downcase %>_list.xml layout 
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/main_layout"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/titleLayout"
+        layout="@layout/app_head" />
+
+    <TextView
+        android:id="@+id/tv_prompt"
+        style="@style/form_no_data"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/corners_10" >
+
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:cacheColorHint="#00000000"
+            android:divider="#bbbbbb"
+            android:dividerHeight="1dp"
+            android:fadingEdge="none" />
+    </LinearLayout>
+
+</LinearLayout>
+
+*/
+
+/*
+<%= key.downcase %>_list_item.xml layout list item layout 
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemlinearLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp" >
+
+    <LinearLayout
+        style="@style/layout_f_w_h_margintop5"
+        android:background="@color/adapter_item_grey" >
+
+        <LinearLayout
+            style="@style/base_layout_fill_fill"
+            android:layout_weight="7" >
+
+            <TextView
+                android:id="@+id/tv_display_timelength"
+                style="@style/form_w80_w_right_font16"
+                android:text="时长：" />
+
+            <TextView
+                android:id="@+id/txtTimelength"
+                style="@style/form_w_w_font16" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/base_layout_fill_fill"
+            android:layout_weight="7" >
+
+            <TextView
+                android:id="@+id/tv_display_no"
+                style="@style/form_w80_w_right_font16"
+                android:text="编号：" />
+
+            <TextView
+                android:id="@+id/txtNo"
+                style="@style/form_w_w_font16" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/layout_f_w_h_margintop5" >
+
+        <LinearLayout
+            style="@style/base_layout_fill_fill"
+            android:layout_weight="7" >
+<% value.each{|attr|                                                                                                        
+  propDesc = attr[2]
+
+  propName = attr[1].sub(/./){|s|s.upcase}
+  propViewId = attr[3] %>
+            <TextView
+                android:id="@+id/lab<%= propName %>"
+                style="@style/form_w80_w_right_font16"
+                android:text="<%= propDesc%>：" />
+
+            <TextView
+                android:id="@+id/<%= propViewId%><%= propName %>"
+                style="@style/form_w_w_font16" />
+
+<%}%>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/base_layout_fill_fill"
+            android:layout_weight="7" >
+
+            <TextView
+                android:id="@+id/tv_display_lineclass"
+                style="@style/form_w80_w_right_font16"
+                android:text="线别：" />
+
+            <TextView
+                android:id="@+id/txtLineclass"
+                style="@style/form_w_w_font16" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/layout_f_w_h_margintop5"
+        android:background="@color/adapter_item_blue" >
+
+        <LinearLayout
+            style="@style/base_layout_fill_fill"
+            android:layout_weight="7" >
+
+            <TextView
+                android:id="@+id/tv_display_monitor"
+                style="@style/form_w80_w_right_font16"
+                android:text="监察： " />
+
+            <TextView
+                android:id="@+id/txtMonitor"
+                style="@style/form_w_w_font16" />
+  
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+*/

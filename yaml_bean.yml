@@ -1,0 +1,13 @@
+WithClassJob:
+  rowId:  String,_id
+  id:  String,id
+  type:  String, 带班/代班
+  unit:  String,带班单位
+  unitId:  String,带班单位id
+  date:  String, 带班日期
+  place:  String, 带班地点
+  project:  String,带班项目
+  people:  String, 带班人员
+  situation:  String,带班情况
+  findProblem:  String,发现问题
+  situationProblem:  String,解决问题
