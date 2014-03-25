@@ -1,0 +1,188 @@
+ScenicHotelList:
+  departCityModel:  CityModel,出发城市
+  keyword:  String,联想关键字
+  nearProductViewModel:  VacationProductListViewModel,短途团队游产品列表
+  selectedNearProduct:  ProductItemViewModel,当前选中的短途周末游model
+  SHProductViewModel:  SHProductListViewModel,景酒产品列表
+  selectedSHProduct:  SHProductItemViewModel,当前所选的景酒model
+  voiceWord:  String,语音搜索语音内容
+
+VacationProductList:
+  lastRequest:  VacationProductListSearchRequest,上一次请求
+  lastSuccessRequest:  VacationProductListSearchRequest,上一次成功请求
+  seniorFilterModel:  CTVacationSeniorFilterModel,筛选model
+  hasMore:  Boolean,是否有下一页
+  totalNumber:  Int,总数
+  ordertype:  EVacationListOrderType,排序
+  listForTraveldays:  Array<VacationFilterValueItemModel>,游玩天数
+  listForScenic:  Array<VacationFilterValueItemModel>,景区
+  listForProductLevel:  Array<VacationFilterValueItemModel>,产品等级
+  listForCruiseCompany:  Array<VacationFilterValueItemModel>,邮轮公司
+  listForProductForm:  Array<VacationFilterValueItemModel>,产品形态
+  listForPortOfDeparture:  Array<VacationFilterValueItemModel>,出发港口
+  productItemList:  Array<ProductItemViewModel>,产品列表
+
+
+ProductItem:
+  productID:  Int,产品ID
+  productName:  String,产品名称
+  subtitle:  String,产品特色
+  imageUrls:  Array,图片列表
+  departDateRemark:  String,出发班期
+  favorableFlag:  String,优惠标签
+  currency:  String,币种
+  price:  String,起价
+  hasVisaInfo:  Boolean,是否有签证信息
+  isLocation:  Boolean,是否是当地游
+  promotRemark:  String,优惠信息
+  promoteDiscount:  String,省多少元
+  promotion:  VacationPromotionModel,促销信息
+
+
+SHProductList:
+  lastRequest:  Request,上一次请求
+  lastSuccessRequest:  Request,上一次成功请求
+  seniorFilterModel:  CTVacationSeniorFilterModel,筛选model
+  hasMore:  Boolean,是否有下一页
+  totalNumber:  Int,总数
+  ordertype:  EVacationListOrderType,排序
+  listForScenic:  Array<VacationFilterValueItemModel>,景区
+  listForTheme:  Array<VacationFilterValueItemModel>,主题
+  listForCrowd:  Array<VacationFilterValueItemModel>,人群
+  listForHotelLevel:  Array<VacationFilterValueItemModel>,酒店等级
+  listForProductForm:  Array<VacationFilterValueItemModel>,出发港口
+  productItemList:  Array<SHProductItemViewModel>,产品列表
+
+
+SHProductItem:
+  SDPId:  Int,产品ID
+  SDPName:  String,产品名称
+  SDPDesc:  String,产品子名称/卖点
+  scenicSpotId:  Int,景点ID 景点ID为-1，表示没有关联任何景点
+  pictureUrls:  List<BasicString>,图片URL
+  grade:  String,评分
+  price:  BasicTinyPrice,起价
+  rebate:  BasicTinyPrice,反现
+  distance:  String,距离
+  tags:  List,标签
+
+
+ScenicHotelDetail:
+  SDPId:  Int,产品ID
+  SDPName:  String,产品名称
+  SDPDesc:  String,产品子名称/卖点
+  pictureUrls:  List,图片列表
+  scenicId:  Int,景点ID
+  HasScenic:  Boolean,是否有关联景点
+  commentsCount:  Int,景点点评总数
+  ticketList:  List<SHTicketInformationViewModel>,门票列表
+  optionProductList:  List<SHOptionProductViewModel>,其他可选项产品
+  hotelInfoList:  List<SHHotelInfoViewModel>,酒店信息
+  SHResourceList:  List<SHResourceViewModel>,相关资源列表，目前只有保险
+  parentPackageList:  List<SDPParentPackageViewModel>,SHX包列表 一个SDP里有5个酒店，每个酒店10个房间，你的PackageList中的package数量是50”
+  scenicInfo:  SHScenicInfoViewModel,景点信息
+  SHCommentList:  List<BasicCommentBaseInformation>,景点点评列表
+  hasMoreComment:  Boolean,是否有更多点评
+
+SHTicketInformation:
+  ticketId:  Int,门票ID
+  ticketName:  String,门票名称
+  description:  String,门票描述
+  spotId:  Int,景点ID
+  productSetting:  Int,产品设置类型（0=必选 1=可选 2=主推）
+  minQuantity:  Int,最小预定份数
+  maxQuantity:  Int,最大预定份数
+  defaultQuantity:  Int,默认份数
+  price:  BasicTinyPrice,门票价格
+  useDateList:  List<SGTicketUseDateViewModel>,使用日期
+  additionInfos:  BasicKeyValues,门票说明如"费用包含,产品信息,优惠政策"
+
+
+SHOptionProduct:
+  productId:  Int,产品id
+  productName:  String,产品名称
+  productSetting:  Int,产品设置类型
+  type:  Int,产品类型
+  price:  BasicTinyPrice,产品价格
+  minQuantity:  Int,最小预定份数
+  maxQuantity:  Int,最大预定份数
+  defaultQuantity:  Int,默认份数
+  additionInfos:  BasicKeyValues,产品说明
+
+
+SHHotelInfo:
+  hotelBasicInfo:  HotelBasicInformation,酒店基本信息
+  commentInfo:  HotelCommentSummaryInformation,综合点评信息
+  noteList:  List,提示说明
+  SHRoomList:  List<SHXHotelRoomBasicInformation>,房型信息
+
+SHResource:
+  resourceID:  Int,资源ID
+  resourceName:  String,资源名
+  resourceType:  Int,资源类型（1=Insurance,2=Visa,4=Option）
+  productAdditionInfos:  SHXProductAdditionInformation,资源说明
+
+
+SDPParentPackage:
+  HotelId:  String,时间日期
+  HotelName:  String,显示金额
+  recommendPkg:  SDPPackage,推荐包
+
+SHScenicInfo:
+  scenicId:  Int,景点id
+  scenicName:  String,景点名称
+  introduce:  String,景点介绍
+  address:  String,景点地址
+  openTime:  String,营业时间
+  coordinateInfo:  BasicCoordinate,经纬度
+  telephone:  SDPPackage,推荐包
+
+
+SHConfirmation:
+  SDPId:  Int,产品ID
+  hotelInfo:  SHHotelInfoViewModel,所选酒店
+  ticketList:  List<SHTicketInformationViewModel>,门票列表
+  selectedTickets:  List<SHTicketInformationViewModel>,选中门票
+  optionProductList:  List<SHOptionProductViewModel>,其他可选项产品
+  selectedOptions:  List<SHOptionProductViewModel>,选中可选项产品
+  SHResourceList:  List<SHResourceViewModel>,相关资源列表，目前只有保险
+  selectResources:  List<SHResourceViewModel>,选中报选
+  totalPrice:  BasicTinyPrice,包总价
+  checkInDate:  SHPriceItemViewModel,入住日期
+
+
+SHPriceItem:
+  priceDate:  string,使用日期
+  startPrice:  BasicTinyPrice,价格
+
+
+ScenicHotelOrder:
+  SDPId:  Int,产品ID
+  orderId:  Int,订单ID
+  hotelInfo:  SHHotelInfoViewModel,所选酒店
+  totalPrice:  BasicTinyPrice,包总价
+  checkInDate:  String,入住日期
+  selectedTickets:  List<SHTicketInformationViewModel>,门票列表
+  selectedOptions:  List<SHOptionProductViewModel>,其他可选项产品
+  selectResources:  List<SHResourceViewModel>,选中报选
+  tripPersonList:  List<TripPersonViewModel>,出行人列表
+  contactPerson:  BasicContactInformationModel,联系人
+  invoiceInfoModel:  VacationInvoiceInfoViewModel,发票
+  deliveryInfo:  DispatchModel,配送地址
+
+
+CustomerInput:
+  inputItemID:  Int,出入项ID
+  inputItemName:  string,输入项名称
+  inputItemModel:  int,输入类型:0 基本类型 1证件类型
+
+
+TripPerson:
+  inputInfo:  CustomerInputViewModel,填写规则
+  personInfo:  PseronNode,人物信息
+
+
+SHPriceCalendar:
+  priceItemList:  List<SHPriceItemViewModel>,价格日历列表
+
+
