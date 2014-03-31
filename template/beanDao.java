@@ -6,19 +6,19 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springside.examples.quickstart.entity.<%= key %>;
+import org.springside.examples.quickstart.entity.TM<%= key %>;
 
 
 /**
  * @auther frankswu
  */
-public interface <%= key %>Dao extends PagingAndSortingRepository<<%= key %>, Long>, JpaSpecificationExecutor<<%= key %>> {
+public interface <%= key %>Dao extends PagingAndSortingRepository<TM<%= key %>, Long>, JpaSpecificationExecutor<TM<%= key %>> {
 
-    Page<<%= key %>> findByXXXXId(Long id, Pageable pageRequest);
+    Page<TM<%= key %>> findByXXXXId(Long id, Pageable pageRequest);
 
-    <%= key %> findByXXXXX(String loginName);
+    TM<%= key %> findByXXXXX(String loginName);
 
     @Modifying
-	@Query("delete from <%= key %> <%= key %> where <%= key %>.user.id=?1")
+	@Query("delete from TM<%= key %> TM<%= key %> where TM<%= key %>.user.id=?1")
 	void deleteByXXXXXId(Long id);
 }

@@ -1,4 +1,4 @@
-package org.springside.examples.quickstart.service.<%= key %>;
+package org.springside.examples.quickstart.service.tennis;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import org.springside.examples.quickstart.entity.<%= key %>;
+import org.springside.examples.quickstart.entity.TM<%= key %>;
 import org.springside.examples.quickstart.repository.<%= key %>Dao;
 import org.springside.modules.persistence.DynamicSpecifications;
 import org.springside.modules.persistence.SearchFilter;
@@ -25,26 +25,26 @@ public class <%= key %>Service {
 
 	private <%= key %>Dao <%= key %>Dao;
 
-	public <%= key %> get<%= key %>(Long id) {
+	public TM<%= key %> getTM<%= key %>(Long id) {
 		return <%= key %>Dao.findOne(id);
 	}
 
-	public void save<%= key %>(<%= key %> entity) {
+	public void saveTM<%= key %>(TM<%= key %> entity) {
 		<%= key %>Dao.save(entity);
 	}
 
-	public void delete<%= key %>(Long id) {
+	public void deleteTM<%= key %>(Long id) {
 		<%= key %>Dao.delete(id);
 	}
 
-	public List<<%= key %>> getAll<%= key %>() {
-		return (List<<%= key %>>) <%= key %>Dao.findAll();
+	public List<TM<%= key %>> getAllTM<%= key %>() {
+		return (List<TM<%= key %>>) <%= key %>Dao.findAll();
 	}
 
-	public Page<<%= key %>> getXXXX<%= key %>(Long userId, Map<String, Object> searchParams, int pageNumber, int pageSize,
+	public Page<TM<%= key %>> getXXXXTM<%= key %>(Long userId, Map<String, Object> searchParams, int pageNumber, int pageSize,
 			String sortType) {
 		PageRequest pageRequest = buildPageRequest(pageNumber, pageSize, sortType);
-		Specification<<%= key %>> spec = buildSpecification(userId, searchParams);
+		Specification<TM<%= key %>> spec = buildSpecification(userId, searchParams);
 
 		return <%= key %>Dao.findAll(spec, pageRequest);
 	}
@@ -66,10 +66,10 @@ public class <%= key %>Service {
 	/**
 	 * 创建动态查询条件组合.
 	 */
-	private Specification<<%= key %>> buildSpecification(Long userId, Map<String, Object> searchParams) {
+	private Specification<TM<%= key %>> buildSpecification(Long userId, Map<String, Object> searchParams) {
 		Map<String, SearchFilter> filters = SearchFilter.parse(searchParams);
 		filters.put("user.id", new SearchFilter("user.id", Operator.EQ, userId));
-		Specification<<%= key %>> spec = DynamicSpecifications.bySearchFilter(filters.values(), <%= key %>.class);
+		Specification<TM<%= key %>> spec = DynamicSpecifications.bySearchFilter(filters.values(), TM<%= key %>.class);
 		return spec;
 	}
 
