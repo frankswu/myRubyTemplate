@@ -13,7 +13,6 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Table(name = "tb_<%= key %>")
 public class <%= key %> extends IdEntity {
-
 	<%
 		value.each do |k,v|
 		

@@ -34,10 +34,10 @@ Dir.foreach(filePath) do |templateFileName|
     p filePath + templateFileName
     # bean template
     map.each do |key,value|
-  #n    change_charset(value)
+  #    change_charset(value)
       
       genCodeFile = '../gencode/' + templateFileName.gsub(/bean/,"#{key}")
-  
+      p genCodeFile
       open(genCodeFile,"w") { |out|
         out.puts tempate.result(binding)
       }
