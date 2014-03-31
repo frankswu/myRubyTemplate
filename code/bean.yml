@@ -1,0 +1,101 @@
+TenniesUser:
+  userId:  long,和baseuser关联一对一
+  age:  int,年龄
+  address:  String,地址
+  birthday:  String,生日 用时间戳？（简单的使用格式化的日期字符串也可以）
+  gender:  TMBaseEnum,性别 0代表男士 1代表女士
+  imageList:  List<TMFileStore>,
+  phote:  String,头像
+  phone:  String,联系电话
+  email:  String,邮箱
+  tennisAge:  int,球龄
+  tennisLevel:  int,水平 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0 5.5
+  personalInfo:  int,个人说明
+  loginTimes:  int,登陆次数
+  lastLoginDate:  String,最后登陆时间
+  deviceFlag:  String,设备标识
+  state:  TMBaseEnum,登陆状态 0 在线 1 不在线 2 黑名单
+  integral:  String,积分
+  accountLevel:  String,等级
+  friendsImpression:  List<TMEvaluate>,好友印象
+
+
+Role:
+  roleName:  String,
+  permissions:  String,
+
+
+Group:
+  groupName:  String,
+  groupDesc:  String,
+
+FileStore:
+  fileName:  String,文件名称
+  fileUrl:  String,文件url
+  fileType:  TMBaseEnum,文件类型
+
+
+Event:
+  title: 标题
+  descrition:  String,内容描述
+  owner:  List<TMTennisUser>, // 发起者
+  participant:  List<TMTennisUser>, // 参与者
+  phone:  String,电话
+  totolPrice:  double,费用
+  require:  String,对手水平要求
+  comments:  List<TMEvaluate>,评论
+  commitTime:  Date,发起时间
+  eventTime:  Date,活动时间
+  address:  String,地点
+  court:  List<TMCourt>,场地
+  longitude:  double,经度
+  latitude:  double,纬度
+  remark:  String,备注
+  category:  TMBaseEnum,分类
+  statues:  TMBaseEnum,状态：2审核中，1未完成，0已完成
+  weight:  int,权重
+  startUsersList:  List<TMBaseUser>,收藏
+
+
+Evaluate:
+  evaluate:  String,评价
+  score:  double,评分
+
+
+Court:
+  address:  String,场地地址
+  city:  TMBaseCity,城市id
+  district:  TMBaseCity,区县id
+  phone:  String,联系电话
+  startTime:  String,开始时间
+  endTime:  String,结束时间
+  fee:  String,收费标准
+  courtDesc:  String,场地情况
+  courtCount:  String,场地片数
+  evaluates:  List<TMEvaluate>,评价
+  imageList:  List<TMFileStore>,图片
+  weights:  String,权重
+  longitude:  double,经度
+  latitude:  double,纬度
+
+
+BaseUser:
+  account:  String,
+  name:  String,
+  password:  String,
+  roles:  String,
+  registerDate:  Date,
+  groupList:  List<TMGroup>,
+
+BaseEnum:
+  enumType:  String,基础枚举类型
+  enumValue:  String,枚举值
+  enumDesc:  String,枚举值描述
+
+
+BaseCity:
+  cityName:  String,城市名称
+  cityType:  String,城市类型
+
+
+
