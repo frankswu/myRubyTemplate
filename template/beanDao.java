@@ -14,11 +14,11 @@ import org.springside.examples.quickstart.entity.TM<%= key %>;
  */
 public interface <%= key %>Dao extends PagingAndSortingRepository<TM<%= key %>, Long>, JpaSpecificationExecutor<TM<%= key %>> {
 
-    Page<TM<%= key %>> findByXXXXId(Long id, Pageable pageRequest);
+    //    Page<TM<%= key %>> findByXXXXId(Long id, Pageable pageRequest);
 
-    TM<%= key %> findByXXXXX(String loginName);
+    //    TM<%= key %> findByXXXXX(String loginName);
 
-    @Modifying
-	@Query("delete from TM<%= key %> TM<%= key %> where TM<%= key %>.user.id=?1")
-	void deleteByXXXXXId(Long id);
+    //    @Modifying
+    //	@Query("delete from TM<%= key %> TM<%= key %> where TM<%= key %>.user.id=?1")
+    //	void deleteByXXXXXId(Long id);
 }
