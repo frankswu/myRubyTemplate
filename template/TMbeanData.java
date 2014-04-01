@@ -8,13 +8,13 @@ import org.springside.modules.test.data.RandomData;
  * 
  * @author calvin
  */
-public class <%= key %>Data {
+public class TM<%= key %>Data {
 
-	public static <%= key %> random<%= key %>() {
+	public static TM<%= key %> random<%= key %>() {
 		TM<%= key %> <%= key %> = new TM<%= key %>();
-		<%= key %>.setTitle(randomTitle());
+//		<%= key %>.setTitle(randomTitle());
 		//User user = new User(1L);
-		<%= key %>.setUser(user);
+//		<%= key %>.setUser(user);
 		return <%= key %>;
 	}
 	<%

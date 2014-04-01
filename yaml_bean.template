@@ -1,6 +1,0 @@
-<%= key %>:<% value.each{|k,v| p = v.sub(/./){|s|s.upcase}%>
-- - <%= p.split(',')[0] %>
-  - <%= k %>
-  - <%= p.split(',')[1] %>
-  - txt
-  - <%= k.upcase %> <%}%>
