@@ -9,7 +9,7 @@ create table tb_<%= key %> (
 		if 'String' == propType
 		  sqlPropType = 'varchar(255)'
 		elsif 'double' == propType
-		  sqlPropType = 'double(4,10)'
+		  sqlPropType = 'double(10,8)'
 		elsif 'Date' == propType
 		  sqlPropType = 'timestamp'
 		elsif 'int' == propType
@@ -34,7 +34,7 @@ create table tb_<%= key %> (
                 if 'String' == propType
                   sqlPropType = 'varchar(255)'
                 elsif 'double' == propType
-                  sqlPropType = 'double(4,10)'
+                  sqlPropType = 'double(10,8)'
                 elsif 'Date' == propType
                   sqlPropType = 'timestamp'
                 elsif 'int' == propType
