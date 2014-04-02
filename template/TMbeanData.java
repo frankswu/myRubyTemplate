@@ -11,11 +11,15 @@ import org.springside.modules.test.data.RandomData;
 public class TM<%= key %>Data {
 
 	public static TM<%= key %> random<%= key %>() {
-		TM<%= key %> <%= key %> = new TM<%= key %>();
-//		<%= key %>.setTitle(randomTitle());
-		//User user = new User(1L);
-//		<%= key %>.setUser(user);
-		return <%= key %>;
+		TM<%= key %> <%= key.downcase %> = new TM<%= key %>();
+        <%
+		    value.each do |k,v|
+		       propName = k
+		       propType = v.split(',')[0]
+		       propDesc = v.split(',')[1]
+				       %>      <%= key.downcase %>.set<%= propName.capitalize %>(random<%= propName.capitalize %>()); 
+<% end %>
+		return <%= key.downcase %>;
 	}
 	<%
 		value.each do |k,v|
