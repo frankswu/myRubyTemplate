@@ -47,8 +47,8 @@ public class <%= key %>RestFT extends BaseFunctionalTestCase {
 	@Test
 	@Category(Smoke.class)
 	public void listTM<%= key %>s() {
-		TM<%= key %>List TM<%= key %>s = restTemplate.getForObject(resoureUrl, TM<%= key %>List.class);
-		assertEquals(5, TM<%= key %>s.size());
+		TM<%= key %>List <%= key.downcase %>s = restTemplate.getForObject(resoureUrl, TM<%= key %>List.class);
+		assertEquals(5, <%= key.downcase %>s.size());
 //		assertEquals("Study PlayFramework 2.0", TM<%= key %>s.get(0).getTitle());
 	}
 
@@ -58,8 +58,8 @@ public class <%= key %>RestFT extends BaseFunctionalTestCase {
 	@Test
 	@Category(Smoke.class)
 	public void getTM<%= key %>() {
-		TM<%= key %> TM<%= key %> = restTemplate.getForObject(resoureUrl + "/{id}", TM<%= key %>.class, 1L);
-//		assertEquals("Study PlayFramework 2.0", TM<%= key %>.getTitle());
+		TM<%= key %> <%= key.downcase %> = restTemplate.getForObject(resoureUrl + "/{id}", TM<%= key %>.class, 1L);
+//		assertEquals("Study PlayFramework 2.0", <%= key.downcase %>.getTitle());
 	}
 
 	/**
@@ -70,29 +70,29 @@ public class <%= key %>RestFT extends BaseFunctionalTestCase {
 	public void createUpdateAndDeleteTM<%= key %>() {
 
 		// create
-//		TM<%= key %> TM<%= key %> = TM<%= key %>Data.randomTM<%= key %>();
-		TM<%= key %> TM<%= key %> = new TM<%= key %>();
+//		TM<%= key %> <%= key.downcase %> = TM<%= key %>Data.randomTM<%= key %>();
+		TM<%= key %> <%= key.downcase %> = new TM<%= key %>();
 
-		URI TM<%= key %>Uri = restTemplate.postForLocation(resoureUrl, TM<%= key %>);
-		System.out.println(TM<%= key %>Uri.toString());
-		TM<%= key %> createdTM<%= key %> = restTemplate.getForObject(TM<%= key %>Uri, TM<%= key %>.class);
-//		assertEquals(TM<%= key %>.getTitle(), createdTM<%= key %>.getTitle());
+		URI <%= key.downcase %>Uri = restTemplate.postForLocation(resoureUrl, <%= key.downcase %>);
+		System.out.println(<%= key.downcase %>Uri.toString());
+		TM<%= key %> createdTM<%= key %> = restTemplate.getForObject(<%= key.downcase %>Uri, TM<%= key %>.class);
+//		assertEquals(<%= key.downcase %>.getTitle(), createdTM<%= key %>.getTitle());
 
 		// update
-		String id = StringUtils.substringAfterLast(TM<%= key %>Uri.toString(), "/");
-		TM<%= key %>.setId(new Long(id));
-//		TM<%= key %>.setTitle(TM<%= key %>Data.randomTitle());
+		String id = StringUtils.substringAfterLast(<%= key.downcase %>Uri.toString(), "/");
+		<%= key.downcase %>.setId(new Long(id));
+//		<%= key.downcase %>.setTitle(<%= key.downcase %>Data.randomTitle());
 
-		restTemplate.put(TM<%= key %>Uri, TM<%= key %>);
+		restTemplate.put(<%= key.downcase %>Uri, <%= key.downcase %>);
 
-		TM<%= key %> updatedTM<%= key %> = restTemplate.getForObject(TM<%= key %>Uri, TM<%= key %>.class);
-//		assertEquals(TM<%= key %>.getTitle(), updatedTM<%= key %>.getTitle());
+		<%= key.downcase %> updatedTM<%= key %> = restTemplate.getForObject(<%= key.downcase %>Uri, TM<%= key %>.class);
+//		assertEquals(<%= key.downcase %>.getTitle(), updatedTM<%= key %>.getTitle());
 
 		// delete
-		restTemplate.delete(TM<%= key %>Uri);
+		restTemplate.delete(<%= key.downcase %>Uri);
 
 		try {
-			restTemplate.getForObject(TM<%= key %>Uri, TM<%= key %>.class);
+			restTemplate.getForObject(<%= key.downcase %>Uri, TM<%= key %>.class);
 			fail("Get should fail while feth a deleted TM<%= key %>");
 		} catch (HttpClientErrorException e) {
 			assertEquals(HttpStatus.NOT_FOUND, e.getStatusCode());

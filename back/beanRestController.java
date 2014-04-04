@@ -41,13 +41,13 @@ import org.springside.modules.beanvalidator.BeanValidators;
  * @author calvin
  */
 @Controller
-@RequestMapping(value = "/api/v1/TM<%= key %>")
+@RequestMapping(value = "/api/v1/<%= key.downcase %>")
 public class <%= key %>RestController {
 
 	private static Logger logger = LoggerFactory.getLogger(<%= key %>RestController.class);
 
 	@Autowired
-	private <%= key %>Service <%= key %>Service;
+	private <%= key %>Service <%= key.downcase %>Service;
 
 	@Autowired
 	private Validator validator;
@@ -61,26 +61,26 @@ public class <%= key %>RestController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") Long id) {
-		TM<%= key %> TM<%= key %> = <%= key %>Service.getTM<%= key %>(id);
-		if (TM<%= key %> == null) {
-			logger.warn("TM<%= key %> with id {} not found", id);
+		TM<%= key %> <%= key.downcase %> = <%= key %>Service.getTM<%= key %>(id);
+		if (<%= key.downcase %> == null) {
+			logger.warn("<%= key %> with id {} not found", id);
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity(TM<%= key %>, HttpStatus.OK);
+		return new ResponseEntity(<%= key.downcase %>, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<?> create(@RequestBody TM<%= key %> TM<%= key %>, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<?> create(@RequestBody TM<%= key %> <%= key.downcase %>, UriComponentsBuilder uriBuilder) {
 		// 调用JSR303 Bean Validator进行校验, 异常将由RestExceptionHandler统一处理.
-		BeanValidators.validateWithException(validator, TM<%= key %>);
+		BeanValidators.validateWithException(validator, <%= key.downcase %>);
 
 		// 保存任务
-		<%= key %>Service.saveTM<%= key %>(TM<%= key %>);
+		<%= key %>Service.saveTM<%= key %>(<%= key.downcase %>);
 
 		// 按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.
-		Long id = TM<%= key %>.getId();
-		URI uri = uriBuilder.path("/api/v1/TM<%= key %>/" + id).build().toUri();
+		Long id = <%= key.downcase %>.getId();
+		URI uri = uriBuilder.path("/api/v1/<%= key.downcase %>/" + id).build().toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
 
@@ -88,11 +88,11 @@ public class <%= key %>RestController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> update(@RequestBody TM<%= key %> TM<%= key %>) {
+	public ResponseEntity<?> update(@RequestBody TM<%= key %> <%= key.downcase %>) {
 		// 调用JSR303 Bean Validator进行校验, 异常将由RestExceptionHandler统一处理.
-		BeanValidators.validateWithException(validator, TM<%= key %>);
+		BeanValidators.validateWithException(validator, <%= key.downcase %>);
 		// 保存
-		<%= key %>Service.saveTM<%= key %>(TM<%= key %>);
+		<%= key %>Service.saveTM<%= key %>(<%= key.downcase %>);
 
 		// 按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(HttpStatus.NO_CONTENT);

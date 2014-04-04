@@ -34,7 +34,7 @@ create table tb_<%= key.downcase %> (
                 if 'String' == propType
                   sqlPropType = 'varchar(255)'
                 elsif 'double' == propType
-                  sqlPropType = 'double(10,8)'
+                  sqlPropType = 'double'
                 elsif 'Date' == propType
                   sqlPropType = 'timestamp'
                 elsif 'int' == propType

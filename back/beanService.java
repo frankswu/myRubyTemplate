@@ -23,22 +23,22 @@ import org.springside.modules.persistence.SearchFilter.Operator;
 @Transactional
 public class <%= key %>Service {
 
-	private <%= key %>Dao <%= key %>Dao;
+	private <%= key %>Dao <%= key.downcase %>Dao;
 
 	public TM<%= key %> getTM<%= key %>(Long id) {
-		return <%= key %>Dao.findOne(id);
+		return <%= key.doWncase %>Dao.findOne(id);
 	}
 
 	public void saveTM<%= key %>(TM<%= key %> entity) {
-		<%= key %>Dao.save(entity);
+		<%= key.doWncase %>Dao.save(entity);
 	}
 
 	public void deleteTM<%= key %>(Long id) {
-		<%= key %>Dao.delete(id);
+		<%= key.doWncase %>Dao.delete(id);
 	}
 
 	public List<TM<%= key %>> getAllTM<%= key %>() {
-		return (List<TM<%= key %>>) <%= key %>Dao.findAll();
+		return (List<TM<%= key %>>) <%= key.doWncase %>Dao.findAll();
 	}
 
 	public Page<TM<%= key %>> getXXXXTM<%= key %>(Long userId, Map<String, Object> searchParams, int pageNumber, int pageSize,
@@ -46,7 +46,7 @@ public class <%= key %>Service {
 		PageRequest pageRequest = buildPageRequest(pageNumber, pageSize, sortType);
 		Specification<TM<%= key %>> spec = buildSpecification(userId, searchParams);
 
-		return <%= key %>Dao.findAll(spec, pageRequest);
+		return <%= key.doWncase %>Dao.findAll(spec, pageRequest);
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class <%= key %>Service {
 	}
 
 	@Autowired
-	public void set<%= key %>Dao(<%= key %>Dao <%= key %>Dao) {
-		this.<%= key %>Dao = <%= key %>Dao;
+	public void set<%= key %>Dao(<%= key %>Dao <%= key.doWncase %>Dao) {
+		this.<%= key.doWncase %>Dao = <%= key.doWncase %>Dao;
 	}
 }

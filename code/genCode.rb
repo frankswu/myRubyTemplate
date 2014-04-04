@@ -38,7 +38,8 @@ Dir.foreach(filePath) do |templateFileName|
       
       genCodeFile = '../gencode/' + templateFileName.gsub(/bean/,"#{key}")
       p genCodeFile
-      open(genCodeFile,"w") { |out|
+      // w mode
+      open(genCodeFile,"a") { |out|
         out.puts tempate.result(binding)
       }
     end

@@ -19,6 +19,6 @@ public interface <%= key %>Dao extends PagingAndSortingRepository<TM<%= key %>, 
     //    TM<%= key %> findByXXXXX(String loginName);
 
     //    @Modifying
-    //	@Query("delete from TM<%= key %> TM<%= key %> where TM<%= key %>.user.id=?1")
+    //	@Query("delete from TM<%= key %> <%= key.downcase %> where <%= key.downcase %>.user.id=?1")
     //	void deleteByXXXXXId(Long id);
 }

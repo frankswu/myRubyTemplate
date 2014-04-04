@@ -11,16 +11,16 @@ import org.hibernate.validator.constraints.NotBlank;
  *
  */
 @Entity
-@Table(name = "tb_<%= key %>")
+@Table(name = "tb_<%= key.downcase %>")
 public class <%= key %> extends IdEntity {
 	<%
 		value.each do |k,v|
 		
 		propName = k
 		propType = v.split(',')[0]
-		if 'List' == propType
+		if propType.rindex(/List$/) != nil || propType.rindex(/s$/) != nil 
 		  propTypeValue = " = Lists.newArrayList()"
-                  propAnoantion = "@OneToMany || @ManyToMany@joinTable@Fetch@orderby@cache"				 
+          propAnoantion = "@OneToMany || @ManyToMany@joinTable@Fetch@orderby@cache"				 
 		end
 		propDesc = v.split(',')[1]
 	%>
