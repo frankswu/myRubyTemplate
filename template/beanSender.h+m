@@ -1,0 +1,131 @@
+
+#import "CTSender.h"
+#import "CTSenderResultModel.h"
+#import "CT<%= key %>CacheBean.h"
+#import "CTPaymentCacheBean.h"
+
+@interface CT<%= key %>Sender : CTSender
+
++(CT<%= key %>Sender *)getInstance;
+
+#pragma mark - ----------------------  提交订单 ----------------------
+
+/**
+ * <br>
+ * <br>
+ * serverCode | serverDesc<br>
+ * 
+ * @param <%= key[0].downcase + key[1..-1] %>CacheBean
+ * 		@{link <%= key %>CacheBean}	xxx cacheBean
+ *
+ *
+ * @return
+ */
+- (CTSenderResultModel *) send<%= key %> : (CT<%= key %>CacheBean*) <%= key[0].downcase + key[1..-1] %>CacheBean;
+
+
+@end
+
+
+
+
+static CT<%= key %>Sender * <%= key[0].downcase + key[1..-1] %>Sender = nil;
+
+@implementation CT<%= key %>Sender
+
++(CT<%= key %>Sender *)getInstance
+{
+	if(!<%= key[0].downcase + key[1..-1] %>Sender){
+        @synchronized(self){
+            if(!<%= key[0].downcase + key[1..-1] %>Sender){
+                <%= key[0].downcase + key[1..-1] %>Sender = [[CT<%= key %>Sender alloc] init];
+            }
+        }
+	}
+	return <%= key[0].downcase + key[1..-1] %>Sender;
+}
+
+
+#pragma mark - ----------------------  提交订单 ----------------------
+
+/**
+ *  提交订单<br>
+ * 10401001 | 国内机票订单提交<br>
+ *
+ * @param flightOrderCacheBean
+ *    @{link FlightOrderCacheBean}
+ *
+ *
+ * @return
+ */
+- (CTSenderResultModel *) send<%= key %> : (CT<%= key %>CacheBean*) <%= key[0].downcase + key[1..-1] %>CacheBean
+{
+    CTSenderResultModel* result = [super createSenderResult:@"CT<%= key %>Sender.send<%= key %>"];
+    CheckMethod checkMethod = ^(NSMutableString *errorInfo) {
+        return YES;
+    };
+    [super checkValue:result withCheckMethod:checkMethod];
+    if(!result.checkResult){
+        return result;
+    }
+    
+    <%= key %>Request* request = [self create<%= key %>Request:<%= key[0].downcase + key[1..-1] %>CacheBean];
+    CTRequestEntity* requestEntity = [[CTRequestEntity alloc] init];
+    requestEntity.requestBean = request;
+    
+    CTSenderCallBack* senderCallBack = [self createCallBack4<%= key %> :<%= key[0].downcase + key[1..-1] %>CacheBean];
+    
+    [self senderService:result withCallBack:senderCallBack withRE:requestEntity];
+    return result;
+    
+}
+
+- (<%= key %>Request*) create<%= key %>Request : (CT<%= key %>CacheBean*) <%= key[0].downcase + key[1..-1] %>CacheBean
+{
+    <%= key %>Request* request = [[<%= key %>Request alloc] init];
+
+//    request.packageList = [self  createPackageList : <%= key[0].downcase + key[1..-1] %>CacheBean];
+    return request;
+    
+}
+
+- (CTSenderCallBack*) createCallBack4<%= key %>  : (CT<%= key %>CacheBean*) <%= key[0].downcase + key[1..-1] %>CacheBean
+{
+
+    CTSenderCallBack *callback = [[CTSenderCallBack alloc] init];
+	SenderSuccessMethod successMethod = ^(CTSenderTask *task, int index)
+	{
+        CTResponseEntity* responseEntity = [task.responseEntities_ objectAtIndex:index];
+   
+        if (responseEntity != nil) {
+            <%= key %>Response* response = (<%= key %>Response*)responseEntity.responseBean;
+//            /**执行状态:0=成功;1=失败*/
+            if (0 == response.result) {
+            	// TODO
+            }
+        }
+        return YES;
+    };
+
+	SenderFailMethod failMethod = ^(CTSenderTask *task, int index)
+	{
+		return NO;
+	};
+    
+    callback.senderSuccess = successMethod;
+	callback.senderFail = failMethod;
+    
+    return callback;
+}
+
+
+-(CTSenderResultModel *) createSenderResult:(NSString *)classNameAndMethodName
+{
+    return [self createSenderResult :classNameAndMethodName withTaskType:_SINGLE_THREAD];
+}
+
+
+
+@end
+
+
