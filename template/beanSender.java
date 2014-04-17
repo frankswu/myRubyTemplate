@@ -1,4 +1,11 @@
-
+import java.util.ArrayList;
+ 
+import ctrip.business.controller.BusinessRequestEntity;
+import ctrip.business.controller.BusinessResponseEntity;
+import ctrip.business.util.SenderCallBack;
+import ctrip.business.util.SenderTask;
+import ctrip.sender.Sender;
+import ctrip.sender.SenderResultModel;
 
 
 public class <%= key %>Sender extends Sender{
@@ -15,7 +22,7 @@ public class <%= key %>Sender extends Sender{
 	}
 
 	/**
-	 * <br>
+	 * <%= value %><br>
 	 * serverCode | serverDesc<br>
 	 * 
 	 * @param <%= key[0].downcase + key[1..-1] %>CacheBean
@@ -42,7 +49,7 @@ public class <%= key %>Sender extends Sender{
 			final <%= key %>CacheBean <%= key %>CacheBean) {
 			<%= key %>Request request = new <%= key %>Request();
 		/**订单信息*/
-		request.orderInfoModel = createOrerInforModel(<%= key %>CacheBean);
+//		request.orderInfoModel = createOrerInforModel(<%= key %>CacheBean);
 		return request;
 	}
 
@@ -57,11 +64,7 @@ public class <%= key %>Sender extends Sender{
 				BusinessResponseEntity responseEntity = task.getResponseEntityArr()[index];
 				if (responseEntity != null) {
 					<%= key %>Response response = (<%= key %>Response)responseEntity.getResponseBean(); 
-					/**执行状态:0=成功;1=失败*/
-					if (0 == response.result) {
 						// TODO
-
-					}
 					
 				}
 				return true;
