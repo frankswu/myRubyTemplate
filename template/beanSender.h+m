@@ -8,10 +8,10 @@
 
 +(CT<%= key %>Sender *)getInstance;
 
-#pragma mark - ----------------------  提交订单 ----------------------
+#pragma mark - ----------------------  <%= value %> ----------------------
 
 /**
- * <br>
+ * <%= value %><br>
  * <br>
  * serverCode | serverDesc<br>
  * 
@@ -28,6 +28,15 @@
 
 
 
+
+
+#import "CTMyCtripOrderStatisticsSender.h"
+#import "CTMyCtripOrderStatisticsCacheBean.h"
+#import "GetMyCtripOrderStatisticsV2Request.h"
+#import "GetMyCtripOrderStatisticsV2Response.h"
+#import "CTSenderResultModel.h"
+#import "CTRequestEntity.h"
+#import "CTResponseEntity.h"
 
 static CT<%= key %>Sender * <%= key[0].downcase + key[1..-1] %>Sender = nil;
 
@@ -46,14 +55,15 @@ static CT<%= key %>Sender * <%= key[0].downcase + key[1..-1] %>Sender = nil;
 }
 
 
-#pragma mark - ----------------------  提交订单 ----------------------
+#pragma mark - ----------------------  <%= value %> ----------------------
 
 /**
- *  提交订单<br>
- * 10401001 | 国内机票订单提交<br>
+ *  <%= value %><br>
  *
- * @param flightOrderCacheBean
- *    @{link FlightOrderCacheBean}
+ * serverCode | serverDesc<br>
+ * 
+ * @param <%= key[0].downcase + key[1..-1] %>CacheBean
+ *      @{link <%= key %>CacheBean} xxx cacheBean
  *
  *
  * @return
@@ -99,10 +109,7 @@ static CT<%= key %>Sender * <%= key[0].downcase + key[1..-1] %>Sender = nil;
    
         if (responseEntity != nil) {
             <%= key %>Response* response = (<%= key %>Response*)responseEntity.responseBean;
-//            /**执行状态:0=成功;1=失败*/
-            if (0 == response.result) {
             	// TODO
-            }
         }
         return YES;
     };
