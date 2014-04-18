@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Event:
   id:  long,
   title: String,标题
@@ -77,8 +76,3 @@ BaseCity:
   cityType:  String,城市类型
 
 
-=======
-GetMyCtripOrderStatisticsV2:  我的携程订单状态
->>>>>>> dc4a3e14d6f72af987ad0d6c87acac5ada3a87d4
-
-CreateOrder:  创建订单
