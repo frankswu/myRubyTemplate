@@ -12,40 +12,28 @@ Event:
   latitude:  double,纬度
   remark:  String,备注
   weight:  int,权重
-  categoryModel:  BaseEnum,分类
-  statuesModel:  BaseEnum,状态：2审核中，1未完成，0已完成
-  startUsersModelList:  List<TMTennisUser>,收藏
-  ownersModelList:  List<TMTennisUser>, // 发起者
-  participantModelList:  List<TMTennisUser>, // 参与者
-  evaluatesModelList:  List<TMEvaluate>,评论
-  courtsModelList:  List<TMCourt>,场地
+  category:  BaseEnum,分类
+  statues:  BaseEnum,状态：2审核中，1未完成，0已完成
+  startUsersTennisUserList:  List<TMTennisUser>,收藏
+  ownersTennisUserList:  List<TMTennisUser>, // 发起者
+  participantTennisUserList:  List<TMTennisUser>, // 参与者
+  commentsEvaluateList:  List<TMEvaluate>,评论
+  courtsCourtList:  List<TMCourt>,场地
 
 
 TennisUser:
   id:  long,
   account:  String,帐户
   name:  String,姓名
-  password:  String,密码
   roles:  String,角色
   registerDate:  Date,注册时间
-  age:  int,年龄
   address:  String,地址
-  birthday:  String,生日 用时间戳？（简单的使用格式化的日期字符串也可以）
-  genderModel:  BaseEnum,性别 0代表男士 1代表女士
+  gender:  BaseEnum,性别 0代表男士 1代表女士
   phote:  String,头像
   phone:  String,联系电话
-  email:  String,邮箱
-  tennisAge:  int,球龄
-  tennisLevel:  int,水平 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0 5.5
-  personalInfo:  int,个人说明
-  loginTimes:  int,登陆次数
-  lastLoginDate:  String,最后登陆时间
-  deviceFlag:  String,设备标识
-  stateModel:  BaseEnum,登陆状态 0 在线 1 不在线 2 黑名单
+  state:  BaseEnum,登陆状态 0 在线 1 不在线 2 黑名单
   integral:  String,积分
   accountLevel:  String,等级
-  friendsImpressionModelList:  List<TMEvaluate>,好友印象
-  imageModelList:  List<TMImage>,照片
 
 ImageFile:
   id:  long,
@@ -57,7 +45,7 @@ Evaluate:
   id:  long,
   evaluate:  String,评价
   score:  double,评分
-  categoryModel:  BaseEnum,评论分类
+  category:  BaseEnum,评论分类
 
 
 Court:
@@ -73,7 +61,7 @@ Court:
   longitude:  double,经度
   latitude:  double,纬度
   cityModel:  BaseCity,城市id
-  districtModel:  BaseCity,区县id
+  district:  BaseCity,区县id
 
 BaseEnum:
   id:  long,
