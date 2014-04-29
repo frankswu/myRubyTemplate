@@ -14,11 +14,11 @@ Event:
   weight:  int,权重
   category:  BaseEnum,分类
   statues:  BaseEnum,状态：2审核中，1未完成，0已完成
-  startUsersTennisUserList:  List<TMTennisUser>,收藏
-  ownersTennisUserList:  List<TMTennisUser>, // 发起者
-  participantTennisUserList:  List<TMTennisUser>, // 参与者
-  commentsEvaluateList:  List<TMEvaluate>,评论
-  courtsCourtList:  List<TMCourt>,场地
+  startUsers_TennisUser_List:  List<TennisUser>,收藏
+  owners_TennisUser_List:  List<TennisUser>, // 发起者
+  participant_TennisUser_List:  List<TennisUser>, // 参与者
+  comments_Evaluate_List:  List<Evaluate>,评论
+  courts_Court_List:  List<Court>,场地
 
 
 TennisUser:
@@ -60,7 +60,7 @@ Court:
   weights:  String,权重
   longitude:  double,经度
   latitude:  double,纬度
-  cityModel:  BaseCity,城市id
+  city:  BaseCity,城市id
   district:  BaseCity,区县id
 
 BaseEnum:
