@@ -14,6 +14,10 @@ rails generate model <%= key.gsub(/([A-Z])/,'_\1').gsub(/^_/,'').downcase %> <%
         if propType == 'Date'
             propType = 'timestamp'
         end
+        if propType == 'double'
+            propType = 'float'
+        end
+
 
         if propName.rindex(/ModelList$/) != nil 
         	propName = propName.gsub(/ModelList$/,'')

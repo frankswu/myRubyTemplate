@@ -1,5 +1,5 @@
 
-rails generate model <%= key.gsub(/([A-Z])/,'_\1').gsub(/^_/,'').downcase %> <%
+rails generate model <%= key.downcase %> <%
 		value.each do |k,v|
 		
 		propName = k
@@ -14,6 +14,9 @@ rails generate model <%= key.gsub(/([A-Z])/,'_\1').gsub(/^_/,'').downcase %> <%
         if propType == 'Date'
             propType = 'timestamp'
         end
+        if propType == 'double'
+            propType = 'float'
+        end
 
         if propName.rindex(/ModelList$/) != nil 
         	propName = propName.gsub(/ModelList$/,'')
@@ -21,8 +24,7 @@ rails generate model <%= key.gsub(/([A-Z])/,'_\1').gsub(/^_/,'').downcase %> <%
         if propName.rindex(/Model$/) != nil 
         	propName = propName.gsub(/Model$/,'')
             propType = 'integer'
-            propName = propName + '_id'
+            propName = propName + '_id' 
         end
-		propMeth = propName[0].upcase + propName[1..-1]
-	%><%= propName.gsub(/([A-Z])/,'_\1').gsub(/^_/,'').downcase %>:<%= propType.downcase %> <% end %>
+	%><%= propName.downcase %>:<%= propType.downcase %> <% end %>
 
