@@ -11,6 +11,9 @@ public class <%= key %> {
 		
 		propName = k
 		propType = v.split(',')[0]
+		if propType == 'Date'
+			propType = 'String'
+		end
 		propDesc = v.split(',')[1]
 	%>
     /** <%= propDesc %> */
@@ -22,6 +25,9 @@ public class <%= key %> {
 		
 		propName = k
 		propType = v.split(',')[0]
+		if propType == 'Date'
+			propType = 'String'
+		end
 		propDesc = v.split(',')[1]
 
 		propMeth = k[0].upcase + k[1..-1]

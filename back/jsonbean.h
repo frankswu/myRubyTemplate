@@ -27,10 +27,7 @@
 			propType = 'long long'
 			propRef = 'assign'
 		elsif 'Date'== propType
-			propType = 'NSString*'
-			propRef = 'copy'
-		elsif propType.rindex(/^List</) != nil
-			propType = 'NSMutableArray*'
+			propType = 'NSDate*'
 			propRef = 'strong'
 		else
 			propType = propType+'*'
