@@ -44,6 +44,7 @@ public class <%= key %> {
     <% end%>
 
 
+
     public String toString(){
 		return "<%= key %>{" + 
 		<%
@@ -59,6 +60,7 @@ public class <%= key %> {
 		"}";
 
     }
+
 
 
 }
