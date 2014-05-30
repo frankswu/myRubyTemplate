@@ -1,5 +1,7 @@
 package com.freeteam.jsonbean;
 
+<%= value['id'] %>
+
 /**
  *
  * @author gen code 
