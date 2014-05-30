@@ -26,7 +26,7 @@ public class <%= key %>Sender extends Sender{
 	 * serverCode | serverDesc<br>
 	 * 
 	 * @param <%= key[0].downcase + key[1..-1] %>CacheBean
-	 * 		@{link <%= key %>CacheBean}	xxx cacheBean
+	 * 		{@link <%= key %>CacheBean}	xxx cacheBean
 	 * 
 	 * 
 	 * @return
@@ -55,7 +55,7 @@ public class <%= key %>Sender extends Sender{
 
 
 	private SenderCallBack createCallBack4<%= key %>(
-			final <%= key %>CacheBean <%=  key[0].downcase + key[1..-1] %>CacheBean) {
+			final <%= key %>CacheBean <%= key[0].downcase + key[1..-1] %>CacheBean) {
 		return new SenderCallBack() {
 			
 			@Override
@@ -79,7 +79,7 @@ public class <%= key %>Sender extends Sender{
 
 
 	private SenderResultModel createResult4<%= key %>(
-			String methodName, final <%= key %>CacheBean <%= key %>CacheBean) {
+			String methodName, final <%= key %>CacheBean <%= key[0].downcase + key[1..-1] %>CacheBean) {
 		return this.checkValueAndGetSenderResul(new CheckValueInterface() {
 			
 			@Override
